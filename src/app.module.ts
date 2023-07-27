@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Todo } from './todos/domain/entities/todo.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/infrastructure/user.module';
+import { UserPersistance } from './users/infrastructure/persistances/entities/user.persistance.entity';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { UserModule } from './users/infrastructure/user.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [Todo],
+        entities: [Todo, UserPersistance],
         synchronize: true,
         autoLoadEntities: true,
       }),
